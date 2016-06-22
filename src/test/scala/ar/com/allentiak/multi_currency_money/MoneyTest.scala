@@ -4,31 +4,20 @@ import org.scalatest.FunSpec
 
 class MoneyTest extends FunSpec {
 
-  describe("Multi-Currency-enabled Dollars") {
+  describe("Multi-Currency-enabled Money") {
     it("should support multiplication by a real number") {
-      val five = new Dollar(5)
-      assert(five.times(2) === new Dollar(10))
-      assert(five.times(3) === new Dollar(15))
+      val fiveDollars = new Dollar(5)
+      assert(fiveDollars.times(2) === new Dollar(10))
+      assert(fiveDollars.times(3) === new Dollar(15))
+      val fiveFrancs = new Franc(5)
+      assert(fiveFrancs.times(2) === new Franc(10))
+      assert(fiveFrancs.times(3) === new Franc(15))
     }
     it("should support equality") {
       assert(new Dollar(5).equals(new Dollar(5)))
-      assertResult(false){
-        (new Dollar(5).equals(new Dollar(6)))
-      }
-    }
-  }
-
-  describe("Multi-Currency-enabled Francs") {
-    it("should support multiplication by a real number") {
-      val five = new Franc(5)
-      assert(five.times(2) === new Franc(10))
-      assert(five.times(3) === new Franc(15))
-    }
-    it("should support equality") {
       assert(new Franc(5).equals(new Franc(5)))
-      assertResult(false){
-        (new Franc(5).equals(new Franc(6)))
-      }
+      assert(new Dollar(5).equals(new Dollar(6)) === false)
+      assert(new Franc(5).equals(new Franc(6)) === false)
     }
   }
 
