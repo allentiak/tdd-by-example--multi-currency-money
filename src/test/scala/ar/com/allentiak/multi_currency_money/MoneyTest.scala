@@ -15,7 +15,7 @@ class MoneyTest extends FunSpec {
       assert(fiveFrancs.times(3) === new Franc(15))
     }
 
-    describe("should support equality") {
+    describe("should support (in)equality") {
       it("internal") {
         assert(new Dollar(5).equals(new Dollar(5)))
         assert(new Franc(5).equals(new Franc(5)))
