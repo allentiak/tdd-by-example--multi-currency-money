@@ -11,6 +11,9 @@ class MoneyTest extends FunSpec {
     }
     it("should support equality") {
       assert(new Dollar(5).equals(new Dollar(5)))
+      assertResult(false){
+        (new Dollar(5).equals(new Dollar(6)))
+      }
     }
   }
 }
