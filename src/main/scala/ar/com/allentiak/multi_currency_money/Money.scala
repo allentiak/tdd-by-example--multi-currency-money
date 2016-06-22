@@ -16,9 +16,9 @@ object Money {
 }
 
 class Dollar(amount: Int, currency: String) extends Money(amount, currency){
-  def times(multiplier: Int): Money = new Dollar(amount * multiplier, "USD")
+  def times(multiplier: Int): Money = new Dollar(amount * multiplier, currency)
 }
 
 class Franc(amount: Int, currency: String) extends Money(amount, currency){
-  def times(multiplier: Int): Money = new Franc(amount * multiplier, "CHF")
+  def times(multiplier: Int): Money = new Franc(amount * multiplier, currency)
 }
