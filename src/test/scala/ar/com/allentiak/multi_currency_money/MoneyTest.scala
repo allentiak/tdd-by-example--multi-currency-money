@@ -32,5 +32,19 @@ class MoneyTest extends FunSpec {
       }
     }
 
+    describe("should support addition") {
+      it("internally") {
+        assert(Money.dollar(5).plus(Money.dollar(5)).equals(Money.dollar(10)))
+        assert(Money.franc(5).plus(Money.franc(5)).equals(Money.franc(10)))
+        }
+      it("using expressions (to support different currencies)"){
+        val five = Money.dollar(5)
+        val sum: Expression = five.plus(five)
+        val bank = new Bank
+        val reduced: Money = bank.reduce(sum, "USD")
+        assert(Money.dollar(10) === reduced)
+        }
+      }
+
   }
 }
