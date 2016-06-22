@@ -16,13 +16,13 @@ class MoneyTest extends FunSpec {
     }
 
     describe("should support (in)equality") {
-      it("internal") {
+      it("internally") {
         assert(Money.dollar(5).equals(Money.dollar(5)))
         assert(Money.franc(5).equals(Money.franc(5)))
         assert(Money.dollar(5).equals(Money.dollar(6)) === false)
         assert(Money.franc(5).equals(Money.franc(6)) === false)
       }
-      it("external") {
+      it("externally") {
         assert(Money.dollar(5).equals(Money.franc(5)) === false)
       }
     }
