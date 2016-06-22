@@ -12,10 +12,6 @@ class Money(protected val amount: Int, val currency: String){
 }
 
 object Money {
-  def dollar(amount: Int): Money = new Dollar(amount, "USD")
-  def franc(amount: Int): Money = new Franc(amount, "CHF")
+  def dollar(amount: Int) = new Money(amount, "USD")
+  def franc(amount: Int) = new Money(amount, "CHF")
 }
-
-class Dollar(amount: Int, currency: String) extends Money(amount, currency)
-
-class Franc(amount: Int, currency: String) extends Money(amount, currency)
