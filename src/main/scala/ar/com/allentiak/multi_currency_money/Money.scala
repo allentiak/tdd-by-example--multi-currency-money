@@ -8,6 +8,7 @@ abstract class Money(protected val amount: Int){
     }
   }
   def times(multiplier: Int): Money
+  def currency: String
 }
 
 object Money {
@@ -17,8 +18,10 @@ object Money {
 
 class Dollar(amount: Int) extends Money(amount){
   def times(multiplier: Int): Money = new Dollar(amount * multiplier)
+  def currency = "USD"
 }
 
 class Franc(amount: Int) extends Money(amount){
   def times(multiplier: Int): Money = new Franc(amount * multiplier)
+  def currency = "CHF"
 }
