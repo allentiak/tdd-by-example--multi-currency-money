@@ -6,6 +6,7 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file(".")).
   settings(commonSettings: _*).
   settings(
+    name := "multi-currency-money",
     libraryDependencies ++= Seq(
  	    "org.scalatest" %% "scalatest" % "2.2.6" % "test"
       )
