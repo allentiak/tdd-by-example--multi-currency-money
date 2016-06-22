@@ -7,6 +7,7 @@ class MoneyTest extends FunSpec {
     it("should support multiplication by a real number") {
       val five = new Dollar(5)
       assert(five.times(2).amount === 10)
+      assert(five.times(3).amount === 15)
     }
   }
 }
