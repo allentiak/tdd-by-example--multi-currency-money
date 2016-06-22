@@ -8,6 +8,7 @@ class Money(protected val amount: Int, val currency: String){
     }
   }
   def times(multiplier: Int): Money = null
+  override def toString: String = amount + " " + currency
 }
 
 object Money {
