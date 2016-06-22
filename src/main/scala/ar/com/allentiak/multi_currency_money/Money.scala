@@ -6,6 +6,7 @@ class Money(protected val amount: Int, val currency: String){
       (amount == o.amount) &&
       this.currency.equals(o.currency)
     }
+    case _ => false
   }
   def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
