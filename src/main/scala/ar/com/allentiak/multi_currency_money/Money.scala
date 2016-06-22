@@ -10,9 +10,9 @@ class Money(protected val amount: Int){
 }
 
 class Dollar(amount: Int) extends Money(amount){
-  def times(multiplier: Int) = new Dollar(amount * multiplier)
+  def times(multiplier: Int): Money = new Dollar(amount * multiplier)
 }
 
 class Franc(amount: Int) extends Money(amount){
-  def times(multiplier: Int) = new Franc(amount * multiplier)
+  def times(multiplier: Int): Money = new Franc(amount * multiplier)
 }
