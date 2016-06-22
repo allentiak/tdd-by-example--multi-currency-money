@@ -9,5 +9,11 @@ class MoneyTest extends FunSpec {
       assert(five.times(2).amount === 10)
       assert(five.times(3).amount === 15)
     }
+    it("should support equality") {
+      assert(new Dollar(5).equals(new Dollar(5)))
+      assertResult(false){
+        (new Dollar(5).equals(new Dollar(6)))
+      }
+    }
   }
 }
