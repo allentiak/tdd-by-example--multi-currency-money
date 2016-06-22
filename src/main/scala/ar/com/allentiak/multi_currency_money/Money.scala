@@ -4,7 +4,7 @@ class Money(protected val amount: Int, val currency: String){
   override def equals(other: Any) = other match {
     case o:Money => {
       (amount == o.amount) &&
-      this.getClass.equals(o.getClass)
+      this.currency.equals(o.currency)
     }
   }
   def times(multiplier: Int): Money = null
