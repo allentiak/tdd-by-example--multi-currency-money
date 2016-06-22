@@ -2,7 +2,7 @@ package ar.com.allentiak.multi_currency_money
 
 class Money(protected val amount:Int){
   override def equals(other: Any) = other match {
-    case o:Dollar => amount == o.amount
+    case o:Money => amount == o.amount
     }
 }
 
