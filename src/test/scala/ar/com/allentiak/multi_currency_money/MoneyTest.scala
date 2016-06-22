@@ -6,6 +6,11 @@ class MoneyTest extends FunSpec {
 
   describe("Multi-Currency-enabled Money") {
 
+    it("should correctly display its currency") {
+      assert(Money.dollar(1).currency === "USD")
+      assert(Money.franc(1).currency === "CHF")
+    }
+
     it("should support multiplication by a real number") {
       val fiveDollars = Money.dollar(5)
       assert(fiveDollars.times(2) === Money.dollar(10))
@@ -16,13 +21,13 @@ class MoneyTest extends FunSpec {
     }
 
     describe("should support (in)equality") {
-      it("internal") {
+      it("internally") {
         assert(Money.dollar(5).equals(Money.dollar(5)))
         assert(Money.franc(5).equals(Money.franc(5)))
         assert(Money.dollar(5).equals(Money.dollar(6)) === false)
         assert(Money.franc(5).equals(Money.franc(6)) === false)
       }
-      it("external") {
+      it("externally") {
         assert(Money.dollar(5).equals(Money.franc(5)) === false)
       }
     }

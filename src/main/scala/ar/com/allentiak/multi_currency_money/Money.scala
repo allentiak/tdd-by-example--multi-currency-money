@@ -1,6 +1,6 @@
 package ar.com.allentiak.multi_currency_money
 
-abstract class Money(protected val amount: Int){
+abstract class Money(protected val amount: Int, val currency: String){
   override def equals(other: Any) = other match {
     case o:Money => {
       (amount == o.amount) &&
@@ -11,14 +11,14 @@ abstract class Money(protected val amount: Int){
 }
 
 object Money {
-  def dollar(amount: Int): Money = new Dollar(amount)
-  def franc(amount: Int): Money = new Franc(amount)
+  def dollar(amount: Int): Money = new Dollar(amount, "USD")
+  def franc(amount: Int): Money = new Franc(amount, "CHF")
 }
 
-class Dollar(amount: Int) extends Money(amount){
-  def times(multiplier: Int): Money = new Dollar(amount * multiplier)
+class Dollar(amount: Int, currency: String) extends Money(amount, currency){
+  def times(multiplier: Int): Money = Money.dollar(amount * multiplier)
 }
 
-class Franc(amount: Int) extends Money(amount){
-  def times(multiplier: Int): Money = new Franc(amount * multiplier)
+class Franc(amount: Int, currency: String) extends Money(amount, currency){
+  def times(multiplier: Int): Money = Money.franc(amount * multiplier)
 }
