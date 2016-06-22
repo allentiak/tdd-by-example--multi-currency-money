@@ -1,6 +1,6 @@
 package ar.com.allentiak.multi_currency_money
 
-class Money(protected val amount:Int){
+class Money(protected val amount: Int){
   override def equals(other: Any) = other match {
     case o:Money => {
       (amount == o.amount) &&
@@ -9,10 +9,10 @@ class Money(protected val amount:Int){
   }
 }
 
-class Dollar(amount:Int) extends Money(amount){
+class Dollar(amount: Int) extends Money(amount){
   def times(multiplier: Int) = new Dollar(amount * multiplier)
 }
 
-class Franc(amount:Int) extends Money(amount){
+class Franc(amount: Int) extends Money(amount){
   def times(multiplier: Int) = new Franc(amount * multiplier)
 }
