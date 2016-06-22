@@ -35,6 +35,7 @@ class MoneyTest extends FunSpec {
     describe("should support addition") {
       it("internally") {
         assert(Money.dollar(5).plus(Money.dollar(5)).equals(Money.dollar(10)))
+        assert(Money.franc(5).plus(Money.franc(5)).equals(Money.franc(10)))
         }
       }
 
