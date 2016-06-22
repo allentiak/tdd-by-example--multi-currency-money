@@ -12,6 +12,7 @@ abstract class Money(protected val amount: Int){
 
 object Money {
   def dollar(amount: Int): Money = new Dollar(amount)
+  def franc(amount: Int): Money = new Franc(amount)
 }
 
 class Dollar(amount: Int) extends Money(amount){
