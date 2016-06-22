@@ -7,7 +7,7 @@ class Money(protected val amount: Int, val currency: String){
       this.currency.equals(o.currency)
     }
   }
-  def times(multiplier: Int): Money = null
+  def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
 }
 
@@ -16,10 +16,6 @@ object Money {
   def franc(amount: Int): Money = new Franc(amount, "CHF")
 }
 
-class Dollar(amount: Int, currency: String) extends Money(amount, currency){
-  override def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
-}
+class Dollar(amount: Int, currency: String) extends Money(amount, currency)
 
-class Franc(amount: Int, currency: String) extends Money(amount, currency){
-  override def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
-}
+class Franc(amount: Int, currency: String) extends Money(amount, currency)
