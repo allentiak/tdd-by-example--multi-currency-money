@@ -6,6 +6,11 @@ class MoneyTest extends FunSpec {
 
   describe("Multi-Currency-enabled Money") {
 
+    it("should correctly display its currency") {
+      assert(Money.dollar(1).currency === "USD")
+      assert(Money.franc(1).currency === "CHF")
+    }
+
     it("should support multiplication by a real number") {
       val fiveDollars = Money.dollar(5)
       assert(fiveDollars.times(2) === Money.dollar(10))
