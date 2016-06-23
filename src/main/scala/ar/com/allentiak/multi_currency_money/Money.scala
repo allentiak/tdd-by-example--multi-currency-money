@@ -8,8 +8,11 @@ class Sum (val augend: Money, val addend: Money) extends Expression {
 
 class Bank {
   def reduce(source: Expression, to: String): Money = {
+    if (source.isInstanceOf[Money]) source.asInstanceOf[Money]
+    else {
     val sum = source.asInstanceOf[Sum]
     sum.reduce(to)
+    }
   }
 }
 
