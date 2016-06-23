@@ -34,6 +34,10 @@ class MoneyTest extends FunSpec {
         assert(Money.franc(5).plus(Money.franc(5)).equals(Money.franc(10)))
       }
     }
+    it("should be reducible to itself") {
+      val bank = new Bank
+      assert(Money.dollar(1) === bank.reduce(Money.dollar(1), "USD"))
+    }
 
   }
 
