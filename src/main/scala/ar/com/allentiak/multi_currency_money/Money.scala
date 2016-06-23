@@ -8,7 +8,7 @@ class Sum (val augend: Money, val addend: Money) extends Expression {
 
 class Bank {
   def reduce(source: Expression, to: String): Money = {
-    if (source.isInstanceOf[Money]) source.asInstanceOf[Money]
+    if (source.isInstanceOf[Money]) source.asInstanceOf[Money].reduce(to)
     else {
     val sum = source.asInstanceOf[Sum]
     sum.reduce(to)
@@ -27,6 +27,7 @@ class Money (val amount: Int, val currency: String) extends Expression {
   def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
   def plus(addend:Money): Expression = new Sum(this, addend)
+  def reduce(to: String) = this
 }
 
 object Money {
