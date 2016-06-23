@@ -5,7 +5,10 @@ trait Expression
 class Sum (val augend: Money, val addend: Money) extends Expression
 
 class Bank {
-  def reduce(source: Expression, to: String): Money = Money.dollar(10)
+  def reduce(source: Expression, to: String): Money = {
+      val sum = source.asInstanceOf[Sum]
+      new Money(sum.augend.amount + sum.addend.amount, to)
+ }
 }
 
 class Money (val amount: Int, val currency: String) extends Expression {
