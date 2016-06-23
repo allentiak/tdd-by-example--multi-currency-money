@@ -44,6 +44,13 @@ class MoneyTest extends FunSpec {
         val reduced: Money = bank.reduce(sum, "USD")
         assert(Money.dollar(10) === reduced)
         }
+      it("Money.plus should return an Sum (a type of Expression)"){
+        val five = Money.dollar(5)
+        val result: Expression = five.plus(five)
+        val sum: Sum = result.asInstanceOf[Sum]
+        assert(five === sum.augend)
+        assert(five === sum.addend)
+        }
       }
 
   }
