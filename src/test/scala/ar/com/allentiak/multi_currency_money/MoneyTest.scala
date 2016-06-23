@@ -53,5 +53,14 @@ class MoneyTest extends FunSpec {
         }
       }
 
+      describe("Expressions"){
+        it("should be reducible") {
+          val sum: Expression = new Sum(Money.dollar(3), Money.dollar(4))
+          val bank = new Bank
+          val result: Money = bank.reduce(sum, "USD")
+          assert(Money.dollar(7) === result)
+        }
+      }
+
   }
 }
