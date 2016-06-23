@@ -2,13 +2,15 @@ package ar.com.allentiak.multi_currency_money
 
 trait Expression
 
-class Sum (val augend: Money, val addend: Money) extends Expression
+class Sum (val augend: Money, val addend: Money) extends Expression {
+  def reduce(to: String) = new Money(augend.amount + addend.amount, to)
+}
 
 class Bank {
   def reduce(source: Expression, to: String): Money = {
-      val sum = source.asInstanceOf[Sum]
-      new Money(sum.augend.amount + sum.addend.amount, to)
- }
+    val sum = source.asInstanceOf[Sum]
+    sum.reduce(to)
+  }
 }
 
 class Money (val amount: Int, val currency: String) extends Expression {
