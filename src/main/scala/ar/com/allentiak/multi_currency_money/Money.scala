@@ -8,7 +8,7 @@ class Bank {
   def reduce(source: Expression, to: String): Money = Money.dollar(10)
 }
 
-class Money (protected val amount: Int, val currency: String) extends Expression {
+class Money (val amount: Int, val currency: String) extends Expression {
   override def equals(other: Any) = other match {
     case o:Money => {
       (amount == o.amount) &&
