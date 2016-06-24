@@ -1,15 +1,15 @@
 package ar.com.allentiak.multi_currency_money
 
 trait Expression {
-  def reduce(to: String): Money
+  def reduce(bank: Bank, to: String): Money
 }
 
 class Sum (val augend: Money, val addend: Money) extends Expression {
-  def reduce(to: String) = new Money(augend.amount + addend.amount, to)
+  def reduce(bank: Bank, to: String) = new Money(augend.amount + addend.amount, to)
 }
 
 class Bank {
-  def reduce(source: Expression, to: String): Money = source.reduce(to)
+  def reduce(source: Expression, to: String): Money = source.reduce(this, to)
   }
 
 class Money (val amount: Int, val currency: String) extends Expression {
@@ -23,7 +23,7 @@ class Money (val amount: Int, val currency: String) extends Expression {
   def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
   def plus(addend: Money): Expression = new Sum(this, addend)
-  def reduce(to: String) = this
+  def reduce(myBank: Bank, to: String) = new Money(amount * myBank.rate(this.currency,to), to)
 }
 
 object Money {
