@@ -22,7 +22,7 @@ class Money (val amount: Int, val currency: String) extends Expression {
   }
   def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
-  def plus(addend:Money): Expression = new Sum(this, addend)
+  def plus(addend: Money): Expression = new Sum(this, addend)
   def reduce(to: String) = this
 }
 
