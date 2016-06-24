@@ -44,6 +44,16 @@ class MoneyTest extends FunSpec {
     }
   }
 
+  describe("Banks") {
+    it("should support rates") {
+      val bank = new Bank
+      assert(bank.rate("USD", "CHF") == 2.0)
+      assert(bank.rate("CHF", "USD") == 0.5)
+      assert(bank.rate("USD", "USD") == 1.0)
+      assert(bank.rate("CHF", "CHF") == 1.0)
+    }
+  }
+
   describe("Expressions") {
     it("Sums should be composed by Money") {
       val five = Money.dollar(5)
