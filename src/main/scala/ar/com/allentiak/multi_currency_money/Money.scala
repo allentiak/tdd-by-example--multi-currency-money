@@ -1,12 +1,18 @@
 package ar.com.allentiak.multi_currency_money
 
-trait Expression
-
-class Bank {
-  def reduce(source: Expression, to: String): Money = Money.dollar(10)
+trait Expression {
+  def reduce(to: String): Money
 }
 
-class Money(protected val amount: Int, val currency: String) extends Expression {
+class Sum (val augend: Money, val addend: Money) extends Expression {
+  def reduce(to: String) = new Money(augend.amount + addend.amount, to)
+}
+
+class Bank {
+  def reduce(source: Expression, to: String): Money = source.reduce(to)
+  }
+
+class Money (val amount: Int, val currency: String) extends Expression {
   override def equals(other: Any) = other match {
     case o:Money => {
       (amount == o.amount) &&
@@ -16,7 +22,8 @@ class Money(protected val amount: Int, val currency: String) extends Expression 
   }
   def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
-  def plus(other:Money): Expression = new Money(amount + other.amount, currency)
+  def plus(addend:Money): Expression = new Sum(this, addend)
+  def reduce(to: String) = this
 }
 
 object Money {
