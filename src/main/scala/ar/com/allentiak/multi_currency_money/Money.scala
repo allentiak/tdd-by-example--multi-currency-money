@@ -10,7 +10,13 @@ class Sum (val augend: Money, val addend: Money) extends Expression {
 
 class Bank {
   def reduce(source: Expression, to: String): Money = source.reduce(this, to)
+  def rate(from: String, to: String): Int =
+    (from,to) match {
+    case ("USD","CHF") => 2
+    case ("USD","USD") => 1
+    case _ => 9999 // should be big enough to note it is not defined yet
   }
+}
 
 class Money (val amount: Int, val currency: String) extends Expression {
   override def equals(other: Any) = other match {
