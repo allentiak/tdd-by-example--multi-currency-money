@@ -19,6 +19,11 @@ class Bank {
   }
 }
 
+private class Pair (val from: String, val to: String) {
+  override def equals(o: Any): Boolean = from.equals(o.asInstanceOf[Pair].from) && to.equals(o.asInstanceOf[Pair].to)
+  override def hashCode: Int = 0
+}
+
 class Money (val amount: Double, val currency: String) extends Expression {
   override def equals(other: Any) = other match {
     case o:Money => {
