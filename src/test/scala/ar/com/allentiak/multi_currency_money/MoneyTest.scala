@@ -37,8 +37,8 @@ class MoneyTest extends FunSpec {
         val fiveBucks: Expression = Money.dollar(5)
         val tenFrancs: Expression = Money.franc(10)
         val bank = new Bank
-        val result= bank.reduce(fiveBucks.plus(tenFrancs), "USD")
-        assert(Money.dollar(10) === result)
+        val result: Money = bank.reduce(new Sum(fiveBucks, tenFrancs).plus(fiveBucks), "USD")
+        assert(Money.dollar(15) === result)
       }
     }
     it("should be reducible to itself") {
@@ -75,6 +75,13 @@ class MoneyTest extends FunSpec {
       val bank = new Bank
       val reduced: Money = bank.reduce(sum, "USD")
       assert(Money.dollar(7) === reduced)
+    }
+    it("should support 'times'") {
+      val fiveDollars = Money.dollar(5)
+      val tenFrancs = Money.franc(10)
+      val sum: Expression = new Sum(tenFrancs,fiveDollars).times(2)
+      val bank = new Bank
+      assert(Money.dollar(20) == bank.reduce(sum,"USD"))
     }
   }
 
