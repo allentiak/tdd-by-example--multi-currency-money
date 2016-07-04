@@ -38,7 +38,21 @@ class MoneyTest extends FunSpec {
       val bank = new Bank
       assert(Money.dollar(1) === bank.reduce(Money.dollar(1), "USD"))
     }
+    it("should be reducible across currencies (USD <-> CHF)") {
+      val bank = new Bank
+      assert(Money.franc(2) === bank.reduce(Money.dollar(1), "CHF"))
+      assert(Money.dollar(1) === bank.reduce(Money.franc(2), "USD"))
+    }
+  }
 
+  describe("Banks") {
+    it("should support rates") {
+      val bank = new Bank
+      assert(bank.rate("USD", "CHF") == 2.0)
+      assert(bank.rate("CHF", "USD") == 0.5)
+      assert(bank.rate("USD", "USD") == 1.0)
+      assert(bank.rate("CHF", "CHF") == 1.0)
+    }
   }
 
   describe("Expressions") {
