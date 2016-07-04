@@ -3,9 +3,10 @@ import scala.collection.mutable.HashMap
 
 trait Expression {
   def reduce(bank: Bank, to: String): Money
+  def plus(addend: Expression): Expression = null
 }
 
-class Sum (val augend: Money, val addend: Money) extends Expression {
+class Sum (val augend: Expression, val addend: Expression) extends Expression {
   def reduce(bank: Bank, to: String) = new Money(augend.reduce(bank, to).amount + addend.reduce(bank, to).amount, to)
 }
 
@@ -35,9 +36,9 @@ class Money (val amount: Double, val currency: String) extends Expression {
     }
     case _ => false
   }
-  def times(multiplier: Double): Money = new Money(amount * multiplier, currency)
+  def times(multiplier: Double): Expression = new Money(amount * multiplier, currency)
   override def toString: String = amount + " " + currency
-  def plus(addend: Money): Expression = new Sum(this, addend)
+  override def plus(addend: Expression): Expression = new Sum(this, addend)
   def reduce(myBank: Bank, to: String) = new Money(amount * myBank.rate(this.currency,to), to)
 }
 
