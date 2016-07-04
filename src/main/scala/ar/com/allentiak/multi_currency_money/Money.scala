@@ -3,7 +3,7 @@ import scala.collection.mutable.HashMap
 
 trait Expression {
   def reduce(bank: Bank, to: String): Money
-  def plus(addend: Expression): Expression = null
+  def plus(addend: Expression): Expression = new Sum(this, addend)
 }
 
 class Sum (val augend: Expression, val addend: Expression) extends Expression {
