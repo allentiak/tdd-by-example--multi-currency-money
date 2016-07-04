@@ -76,6 +76,13 @@ class MoneyTest extends FunSpec {
       val reduced: Money = bank.reduce(sum, "USD")
       assert(Money.dollar(7) === reduced)
     }
+    it("should support 'times'") {
+      val fiveDollars = Money.dollar(5)
+      val tenFrancs = Money.franc(10)
+      val sum: Expression = new Sum(tenFrancs,fiveDollars).times(2)
+      val bank = new Bank
+      assert(Money.dollar(20) == bank.reduce(sum,"USD"))
+    }
   }
 
 }
