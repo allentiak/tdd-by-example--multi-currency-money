@@ -1,4 +1,5 @@
 package ar.com.allentiak.multi_currency_money
+import scala.collection.mutable.HashMap
 
 trait Expression {
   def reduce(bank: Bank, to: String): Money
@@ -9,17 +10,19 @@ class Sum (val augend: Money, val addend: Money) extends Expression {
 }
 
 class Bank {
+  val rates = new HashMap[Pair,Double]
+  def addRate(from: String, to: String, rate: Double) = rates.put(new Pair(from,to), rate)
   def reduce(source: Expression, to: String): Money = source.reduce(this, to)
-  def rate(from: String, to: String): Double =
-    (from,to) match {
-    case ("USD","CHF") => 2.0
-    case ("CHF","USD") => 0.5
-    case ("CHF","CHF") => 1.0
-    case ("USD","USD") => 1.0
-  }
+  def rate(from: String, to: String): Double = if (from.equals(to)) 1 else
+  rates.get(new Pair(from, to)) match {
+    case None => 0
+    case Some(value) => value
+    }
+  addRate("CHF", "USD", 0.5)
+  addRate("USD","CHF", 2)
 }
 
-private class Pair (val from: String, val to: String) {
+class Pair (val from: String, val to: String) {
   override def equals(o: Any): Boolean = from.equals(o.asInstanceOf[Pair].from) && to.equals(o.asInstanceOf[Pair].to)
   override def hashCode: Int = 0
 }
