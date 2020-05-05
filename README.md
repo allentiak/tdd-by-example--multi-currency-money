@@ -7,4 +7,5 @@ Scala implementation of the "Multi-Currency Money" example [*].
 
 ## License
 
-AGPL 3+
+Copyright © since 2016, Leandro Doctors.
+Licensed under the Apache License, Version 2.0.
